@@ -1,0 +1,16 @@
+| script | selenium driver fixture |
+| start browser | firefox | on url | https://www.google.fr/ |
+| note |  Setup  |
+| do | open | on | !-https://pid.hardis.fr/confluence/-! |
+| ensure | do | waitForPageToLoad | on | 20 |
+| check | is | assertText | on | id=title-text | Tableau de bord |
+| note |  Accesses the help menu |
+| ensure | do | assertElementPresent | on | id=help-menu-link |
+| ensure | do | click | on | id=help-menu-link |
+| ensure | do | assertVisible | on | !-//nav[@id='help-menu-link-content']/div[2]-! |
+| note |  Checks one of the links  |
+| ensure | do | assertElementPresent | on | link=Aide Confluence Hardis |
+| note |  Teardown  |
+| do | open | on | !-https://pid.hardis.fr/confluence/-! |
+| ensure | do | waitForText | on | id=title-text | with | Tableau de bord |
+| stop browser |
